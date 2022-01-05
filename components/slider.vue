@@ -1,14 +1,14 @@
 <template>
-    <vue-range-slider v-model="filterValue" :min="min" :max="max"></vue-range-slider>
+  <div>
+    <span>price: {{filterValue}}</span>
+    <input class="slider" type="range" v-model="filterValue" min="0" max="500"/>
+  </div>
 </template>
 
 <script>
-import VueRangeSlider from 'vue-range-component'
-import 'vue-range-component/dist/vue-range-slider.css'
 
 export default ({
     name: 'slider', 
-    components: {VueRangeSlider},
     data(){
         return({
             filterValue: 500,
@@ -25,3 +25,9 @@ export default ({
   },
 })
 </script>
+
+<style scoped>
+  .slider{
+    width: 100%;
+  }
+</style>

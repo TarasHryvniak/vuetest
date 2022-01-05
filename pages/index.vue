@@ -3,9 +3,9 @@
       <b-sidebar id="sidebar-right" title="Create/Edit" right shadow> 
       <div class="px-3 py-2">
         <div class='title-wrapper'>
-            <b-textarea class="mb-3" v-model="newVacancy.title" disabled></b-textarea>
+            <b-textarea class="mb-3" v-model="newVacancy.title"></b-textarea>
         </div>
-        <b-textarea v-model="newVacancy.description" disabled></b-textarea>
+        <b-textarea v-model="newVacancy.description"></b-textarea>
         <b-button variant="outline-primary mt-5" @click="saveVacancy">Save</b-button>
         <b-button variant="danger mt-5" @click="deleteVacancy">Delete</b-button>
       </div>
