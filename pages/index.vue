@@ -1,14 +1,34 @@
 <template>
 <div class="wrapper">
       <b-sidebar id="sidebar-right" title="Create/Edit" right shadow> 
-      <div class="px-3 py-2">
+      <b-form class="px-3 py-2" @submit.prevent="validateForm">
         <div class='title-wrapper'>
-            <b-textarea class="mb-3" v-model="newVacancy.title"></b-textarea>
+            <b-input 
+              type="text" 
+              class="mb-3" 
+              required
+              v-model="newVacancy.title"></b-input>
         </div>
-        <b-textarea v-model="newVacancy.description"></b-textarea>
-        <b-button variant="outline-primary mt-5" @click="saveVacancy">Save</b-button>
-        <b-button variant="danger mt-5" @click="deleteVacancy">Delete</b-button>
-      </div>
+        <b-input 
+          type="text" 
+          class="description"
+          v-model="newVacancy.description"></b-input>
+        <b-button 
+          variant="danger mt-5" 
+          @click="deleteVacancy">Delete</b-button>
+        <b-button 
+          variant="outline-primary mt-5"
+          type="submit">Save</b-button>
+        <b-alert
+          :show="dismissCountDown"
+          dismissible
+          variant="warning"
+          @dismissed="dismissCountDown=0"
+          @dismiss-count-down="countDownChanged"
+        >
+          <p>{{ errors }}</p>
+    </b-alert>
+      </b-form>
     </b-sidebar>
   <h4 class="mb-4">Filter</h4>
       <slider />
@@ -40,13 +60,15 @@ export default {
   name: 'IndexPage',
   data(){
     return({
+      dismissCountDown: 0,
       showDrawer: false,
       newVacancy: {
         title: '',
         description: '',
         dates: [],
         id: null
-      }
+      },
+      errors:[]
     })
   },
   computed: {
@@ -56,6 +78,22 @@ export default {
     }
   },
   methods:{
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+    validateForm(){
+
+      this.errors = []
+
+      if (this.newVacancy.title.length > 100) this.errors.push('title must be less than 100 characters')
+      if(this.newVacancy.description.length > 500) this.errors.push('description must be less than 500 characters')
+
+      if(this.errors.length > 0){
+      this.dismissCountDown = 3
+
+      }
+      else this.saveVacancy()
+    },
     setToEdit(vacancy){
       this.newVacancy = {...vacancy}
     },
@@ -101,5 +139,9 @@ h4 {
 
 h6 {
   font-size: 14px;
+}
+
+.description{
+  min-height: 100px;
 }
 </style>
