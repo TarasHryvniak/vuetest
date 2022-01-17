@@ -2,17 +2,22 @@
 <div class="wrapper">
       <b-sidebar id="sidebar-right" title="Create/Edit" right shadow> 
       <b-form class="px-3 py-2" @submit.prevent="validateForm">
-        <div class='title-wrapper'>
-            <b-input 
-              type="text" 
-              class="mb-3" 
-              required
-              v-model="newVacancy.title"></b-input>
-        </div>
+        <label for="title">Title</label>
         <b-input 
+          id="title"
+          type="text" 
+          class="mb-3" 
+          required
+          v-model="newVacancy.title"></b-input>
+        <label for="description">Description</label>
+        <b-input 
+          id="description"
           type="text" 
           class="description"
           v-model="newVacancy.description"></b-input>
+        <label for="dates">Dates</label>
+        <ejs-datepicker :placeholder="waterMark" v-model="selectedDate" :format="dateFormat"></ejs-datepicker>
+      <dateform :date="selectedDate" />
         <b-button 
           variant="danger mt-5" 
           @click="deleteVacancy">Delete</b-button>
@@ -34,7 +39,6 @@
       <slider />
   <h4 class="mt-4">Shifts</h4>
   <div class="edit-bar">
-
     <b-button v-b-toggle.sidebar-right>Add shift</b-button>
   </div>
   <div>
@@ -53,13 +57,22 @@
 import vacancy from '../components/vacancy.vue'
 import { mapGetters } from 'vuex';
 import slider from '../components/slider.vue'
+import { DatePickerPlugin } from '@syncfusion/ej2-vue-calendars';
+import Vue from 'vue';
 
+Vue.use(DatePickerPlugin)
 
 export default {
-  components: { vacancy, slider},
+  components: { 
+    vacancy,
+    slider,
+    },
   name: 'IndexPage',
   data(){
     return({
+      waterMark : 'Select a date',
+      dateFormat : 'yyyy-MM-dd',
+      selectedDate: new Date(),
       dismissCountDown: 0,
       showDrawer: false,
       newVacancy: {
@@ -70,6 +83,11 @@ export default {
       },
       errors:[]
     })
+  },
+  watch:{
+    selectedDate: function(val){
+      console.log(val)
+    }
   },
   computed: {
     ...mapGetters('vacancies', ['getVacancies']),
@@ -120,10 +138,23 @@ export default {
 </script>
 
 <style>
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-vue-calendars/styles/material.css";
+.datepicker {
+  display: flex;
+}
+
+.dateinput {
+  width: 100%;
+}
+
 .wrapper {
   flex-direction: column;
   display: flex;
-  width: 500px;
+  width: 700px;
   padding: 40px;
   margin: auto;
 }

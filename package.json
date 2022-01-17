@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@syncfusion/ej2-vue-calendars": "^19.4.42",
     "@vue/cli": "^4.5.15",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.19.3",

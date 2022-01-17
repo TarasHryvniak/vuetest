@@ -50,9 +50,10 @@ export const actions = {
     commit('saveEdited', vacancies);
   },
   add({commit}, data){
-    const vacancies = state().vacancies
-    vacancies.push({...data})
-    commit('saveEdited', vacancies)
+    /*const vacancies = state().vacancies
+    console.log(commit)
+    vacancies.push({...data})*/
+    commit('addVacancie', data)
   },
   delete({commit}, data){
     const vacancies = state().vacancies
@@ -77,6 +78,9 @@ export const actions = {
 export const mutations = {
   saveEdited(state, data){
     state.vacancies = data
+  },
+  addvacancie(state, data){
+    state.vacancies.push({...data})
   }
 }
 

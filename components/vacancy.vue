@@ -44,7 +44,6 @@ export default({
 
 <style>
     .item{
-        max-width: 500px;
         box-shadow: 0 0 7px 0px black;
         padding: 10px;
         border-radius: 5px;
