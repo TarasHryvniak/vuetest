@@ -17,7 +17,14 @@
           v-model="newVacancy.description"></b-input>
         <label for="dates">Dates</label>
         <ejs-datepicker :placeholder="waterMark" v-model="selectedDate" :format="dateFormat"></ejs-datepicker>
-      <dateform :date="selectedDate" />
+      <dateform 
+        v-for="(date, index) in newVacancy.dates"
+        :key="index"
+        :date="date"
+        :id="index"
+        @deletedate="onDelete"
+        @editdate="editDate"
+      />
         <b-button 
           variant="danger mt-5" 
           @click="deleteVacancy">Delete</b-button>
@@ -72,7 +79,7 @@ export default {
     return({
       waterMark : 'Select a date',
       dateFormat : 'yyyy-MM-dd',
-      selectedDate: new Date(),
+      selectedDate: null,
       dismissCountDown: 0,
       showDrawer: false,
       newVacancy: {
@@ -86,7 +93,7 @@ export default {
   },
   watch:{
     selectedDate: function(val){
-      console.log(val)
+      this.newVacancy.dates.push({date: val})
     }
   },
   computed: {
@@ -96,7 +103,10 @@ export default {
     }
   },
   methods:{
-      countDownChanged(dismissCountDown) {
+    onDelete(id){
+      this.newVacancy.dates.splice(id, 1)
+    },
+    countDownChanged(dismissCountDown) {
         this.dismissCountDown = dismissCountDown
       },
     validateForm(){
@@ -117,6 +127,13 @@ export default {
     },
     deleteVacancy(){
       this.$store.dispatch('vacancies/delete', { id: this.newVacancy.id})
+    },
+    editDate(data){
+      console.log(data.index, data.field)
+      this.newVacancy.dates[data.index] = {
+        ...this.newVacancy.dates[data.index],
+        ...data.field,
+      }
     },
     saveVacancy(){
 

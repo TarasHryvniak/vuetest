@@ -5,14 +5,14 @@ const initializeStates = () => {
             description: "Sit exercitation ipsum magna deserunt laboris aliquip commodo adipisicing amet dolor sint incididunt pariatur.",
             dates: [
                 {
-                    date: "Saturday-11-2014",
+                    date: "2022-01-03T22:00:00.000Z",
                     starttime: "11:44",
                     endtime: "02:25",
                     price: 100,
                     type: "Telephone"
                 },
                 {
-                    date: "Friday-10-2019",
+                    date: "2022-01-03T22:00:00.000Z",
                     starttime: "05:39",
                     endtime: "01:43",
                     price: 200,
@@ -25,7 +25,7 @@ const initializeStates = () => {
             description: "Lorem nulla ex ex consequat excepteur ex eiusmod anim officia cillum.",
             dates: [
               {
-                date: "Wednesday-11-2020",
+                date: "2022-01-03T22:00:00.000Z",
                 starttime: "09:05",
                 endtime: "04:56",
                 price: 300,
@@ -79,7 +79,7 @@ export const mutations = {
   saveEdited(state, data){
     state.vacancies = data
   },
-  addvacancie(state, data){
+  addVacancie(state, data){
     state.vacancies.push({...data})
   }
 }
