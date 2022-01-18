@@ -11,7 +11,7 @@
                     <ejs-timepicker id='starttime' v-model="starttime"></ejs-timepicker>
                 </div>
                 <div class='inputitem'>
-                    <lable for="endtime">Endtime</lable>
+                    <label for="endtime">Endtime</label>
                     <ejs-timepicker id='endtime' v-model="endtime"></ejs-timepicker>
                 </div>
                 <div class='inputitem'>
@@ -19,17 +19,17 @@
                     <input type="text" id='price' class='price' v-model="price">
                 </div>
             </div>
-            <b-select>
-                <option>Consultation</option>
-                <option>Telephone</option>
-                <option>Ambulance</option>
+            <b-select v-model="type">
+                <option value="Consultation">Consultation</option>
+                <option value="Telephone">Telephone</option>
+                <option value="Ambulance">Ambulance</option>
             </b-select>
         </div>
     </div>
 </template>
 
 <script>
-
+import moment from 'moment';
 import Vue from "vue";
 import { TimePickerPlugin } from "@syncfusion/ej2-vue-calendars";
 Vue.use(TimePickerPlugin);
@@ -41,31 +41,41 @@ export default {
             starttime: null,
             endtime: null,
             price: 0,
+            type: String,
         })
     },
     props:{
-        date:{},
+        date:{
+            starttime: String,
+            endtime: String,
+            price: Number,
+            type: String,
+        },
         id: Number,
     },
     filters:{
         formatDate: function(val) {
-            return new Date(val).toLocaleDateString("en-US")
+            return moment(val).format('DD MMM YYYY')
         }
     },
     mounted(){
         this.starttime = this.date.starttime
         this.endtime = this.date.endtime
         this.price = this.date.price
+        this.type = this.date.type
     },
     watch:{
         starttime:function(val){
-            this.$emit('editdate',{index:this.id, field: {starttime:new Date(val).toTimeString()}})
+            this.$emit('editdate',{index:this.id, field: {starttime:val}})
         },
         endttime:function(val){
-            this.$emit('editdate',{index:this.id, field: {endtime:new Date(val).toTimeString()}})
+            this.$emit('editdate',{index:this.id, field: {endtime:val}})
         },
         price:function(val){
             this.$emit('editdate',{index:this.id, field: {price: val}})
+        },
+        type:function(val){
+            this.$emit('editdate',{index: this.id, field: {type: val}})
         }
     },
     methods:{
