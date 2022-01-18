@@ -58,12 +58,14 @@ export default {
         this.price = this.date.price
     },
     watch:{
-        date:function(val){
-            console.log('date',val)
-        },
         starttime:function(val){
-            console.log('val',this.id)
             this.$emit('editdate',{index:this.id, field: {starttime:new Date(val).toTimeString()}})
+        },
+        endttime:function(val){
+            this.$emit('editdate',{index:this.id, field: {endtime:new Date(val).toTimeString()}})
+        },
+        price:function(val){
+            this.$emit('editdate',{index:this.id, field: {price: val}})
         }
     },
     methods:{
