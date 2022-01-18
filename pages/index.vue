@@ -27,26 +27,17 @@
       />
         <b-button 
           variant="danger mt-5" 
-          @click="deleteVacancy">Delete</b-button>
+          @click="deleteVacancy" class="delete_button">Delete</b-button>
         <b-button 
           variant="outline-primary mt-5"
-          type="submit">Save</b-button>
-        <b-alert
-          :show="dismissCountDown"
-          dismissible
-          variant="warning"
-          @dismissed="dismissCountDown=0"
-          @dismiss-count-down="countDownChanged"
-        >
-          <p>{{ errors }}</p>
-    </b-alert>
+          type="submit" class="save_button">Save</b-button>
       </b-form>
     </b-sidebar>
   <h4 class="mb-4">Filter</h4>
       <slider />
   <h4 class="mt-4">Shifts</h4>
   <div class="edit-bar">
-    <b-button v-b-toggle.sidebar-right>Add shift</b-button>
+    <b-button class="add_button" v-b-toggle.sidebar-right>ADD SHIFT</b-button>
   </div>
   <div>
     <vacancy 
@@ -109,19 +100,6 @@ export default {
     countDownChanged(dismissCountDown) {
         this.dismissCountDown = dismissCountDown
       },
-    validateForm(){
-
-      this.errors = []
-
-      if (this.newVacancy.title.length > 100) this.errors.push('title must be less than 100 characters')
-      if(this.newVacancy.description.length > 500) this.errors.push('description must be less than 500 characters')
-
-      if(this.errors.length > 0){
-      this.dismissCountDown = 3
-
-      }
-      else this.saveVacancy()
-    },
     setToEdit(vacancy){
       this.newVacancy = {...vacancy}
     },
@@ -160,8 +138,32 @@ export default {
 @import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import "../node_modules/@syncfusion/ej2-vue-calendars/styles/material.css";
+
 .datepicker {
   display: flex;
+}
+.add_button{
+  background-color: #484848;
+}
+.save_button{
+  background-color: #484848;
+  border-color: #484848;
+  color: white;
+  width:45%;
+}
+.save_button:hover{
+  background-color: #757575;
+  border-color: #757575;
+}
+.delete_button{
+  background-color: #f8f9fa;
+  color: #484848;
+  border-color: #484848;
+  width:45%;
+}
+.delete_button:hover{
+  background-color: #484848;
+  border-color: #f8f9fa;
 }
 
 .dateinput {

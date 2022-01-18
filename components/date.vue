@@ -4,7 +4,7 @@
         <b-card-text class='field'>{{date.starttime | formatTime}}</b-card-text>
         <b-card-text class='field'>{{date.endtime | formatTime}}</b-card-text>
         <b-card-text class='field'>{{date.type}}</b-card-text>
-        <b-card-text class='field'>{{date.price}}</b-card-text>
+        <b-card-text class='field'>{{date.price | formatPrice}}</b-card-text>
     </div>  
 </template>
 
@@ -24,6 +24,9 @@ export default({
         },
         formatTime: function(val) {
             return moment(val).format('hh:mm')
+        },
+        formatPrice: function(val) {
+            return String.fromCharCode(8364) + val
         }
     },
 })

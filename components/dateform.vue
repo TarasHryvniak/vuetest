@@ -113,5 +113,7 @@ export default {
         border-bottom-width: 1px;
         border-bottom-style: solid;
         border-block-color: gray;
+        line-height: 1.75;
+        background-color: #f8f9fa;
     }
 </style>

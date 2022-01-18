@@ -6,15 +6,15 @@ const initializeStates = () => {
             dates: [
                 {
                     date: "2022-01-03T22:00:00.000Z",
-                    starttime: "11:44",
-                    endtime: "02:25",
+                    starttime: "2022-01-03T22:01:30.000Z",
+                    endtime: "2022-01-03T22:05:00.000Z",
                     price: 100,
                     type: "Telephone"
                 },
                 {
                     date: "2022-01-03T22:00:00.000Z",
-                    starttime: "05:39",
-                    endtime: "01:43",
+                    starttime: "2022-01-03T22:06:00.000Z",
+                    endtime: "2022-01-03T22:10:00.000Z",
                     price: 200,
                     type: "Telephone"
                 },
@@ -26,8 +26,8 @@ const initializeStates = () => {
             dates: [
               {
                 date: "2022-01-03T22:00:00.000Z",
-                starttime: "09:05",
-                endtime: "04:56",
+                starttime: "2022-01-03T22:00:00.000Z",
+                endtime: "2022-01-03T22:12:00.000Z",
                 price: 300,
                 type: "Telephone"
               },
@@ -50,9 +50,6 @@ export const actions = {
     commit('saveEdited', vacancies);
   },
   add({commit}, data){
-    /*const vacancies = state().vacancies
-    console.log(commit)
-    vacancies.push({...data})*/
     commit('addVacancie', data)
   },
   delete({commit}, data){
