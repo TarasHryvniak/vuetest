@@ -45,12 +45,7 @@ export default {
         })
     },
     props:{
-        date:{
-            starttime: String,
-            endtime: String,
-            price: Number,
-            type: String,
-        },
+        date:{},
         id: Number,
     },
     filters:{
@@ -91,8 +86,6 @@ export default {
 </script>
 
 <style scoped>
-    .dateitem {
-    }
     .datetitle {
         display: flex;
         justify-content: space-between;

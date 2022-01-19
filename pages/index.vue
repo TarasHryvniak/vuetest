@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
       <b-sidebar id="sidebar-right" title="Create/Edit" right shadow> 
-      <b-form class="px-3 py-2" @submit.prevent="validateForm">
+      <b-form class="px-3 py-2" @submit.prevent="saveVacancy">
         <label for="title">Title</label>
         <b-input 
           id="title"

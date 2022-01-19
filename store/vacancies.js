@@ -50,12 +50,12 @@ export const actions = {
     commit('saveEdited', vacancies);
   },
   add({commit}, data){
-    commit('addVacancie', data)
+    commit('addVacancy', data)
   },
   delete({commit}, data){
     const vacancies = state().vacancies
     vacancies.splice(data.id, 1)
-    commit('saveEdited', vacancies)
+    commit('deleteVacancy', data)
   },
   filter({commit}, data){
     const oldVacancies = state().vacancies
@@ -76,7 +76,10 @@ export const mutations = {
   saveEdited(state, data){
     state.vacancies = data
   },
-  addVacancie(state, data){
+  deleteVacancy(state, data){
+    state.vacancies.splice(data.id, 1)
+  },
+  addVacancy(state, data){
     state.vacancies.push({...data})
   }
 }
