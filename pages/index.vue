@@ -17,7 +17,7 @@
           v-model="newVacancy.description"></b-input>
         <label for="dates">Dates</label>
         <ejs-datepicker :placeholder="waterMark" v-model="selectedDate" :format="dateFormat"></ejs-datepicker>
-      <dateform 
+      <dateedit
         v-for="(date, index) in newVacancy.dates"
         :key="index"
         :date="date"

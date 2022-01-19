@@ -35,7 +35,7 @@ import { TimePickerPlugin } from "@syncfusion/ej2-vue-calendars";
 Vue.use(TimePickerPlugin);
 
 export default {
-    name: 'dateform',
+    name: 'dateedit',
     data(){
         return({
             starttime: null,
